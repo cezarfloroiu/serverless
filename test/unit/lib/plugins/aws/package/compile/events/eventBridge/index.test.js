@@ -164,6 +164,7 @@ describe('EventBridgeEvents', () => {
         fixture: 'function',
         configExt: {
           ...serverlessConfigurationExtension,
+          disabledDeprecations: ['AWS_EVENT_BRIDGE_CUSTOM_RESOURCE_LEGACY_OPT_IN'],
           provider: {
             eventBridge: {
               useCloudFormation: false,
@@ -284,7 +285,12 @@ describe('EventBridgeEvents', () => {
         runServerless({
           fixture: 'function',
           configExt: {
-            disabledDeprecations: ['AWS_EVENT_BRIDGE_CUSTOM_RESOURCE'],
+            disabledDeprecations: ['AWS_EVENT_BRIDGE_CUSTOM_RESOURCE_LEGACY_OPT_IN'],
+            provider: {
+              eventBridge: {
+                useCloudFormation: false,
+              },
+            },
             functions: {
               basic: {
                 events: [
@@ -316,7 +322,12 @@ describe('EventBridgeEvents', () => {
         runServerless({
           fixture: 'function',
           configExt: {
-            disabledDeprecations: ['AWS_EVENT_BRIDGE_CUSTOM_RESOURCE'],
+            disabledDeprecations: ['AWS_EVENT_BRIDGE_CUSTOM_RESOURCE_LEGACY_OPT_IN'],
+            provider: {
+              eventBridge: {
+                useCloudFormation: false,
+              },
+            },
             functions: {
               basic: {
                 events: [
@@ -347,7 +358,12 @@ describe('EventBridgeEvents', () => {
         runServerless({
           fixture: 'function',
           configExt: {
-            disabledDeprecations: ['AWS_EVENT_BRIDGE_CUSTOM_RESOURCE'],
+            disabledDeprecations: ['AWS_EVENT_BRIDGE_CUSTOM_RESOURCE_LEGACY_OPT_IN'],
+            provider: {
+              eventBridge: {
+                useCloudFormation: false,
+              },
+            },
             functions: {
               basic: {
                 events: [
@@ -366,21 +382,6 @@ describe('EventBridgeEvents', () => {
       ).to.be.eventually.rejected.and.have.property(
         'code',
         'ERROR_INVALID_REFERENCE_TO_EVENT_BUS_CUSTOM_RESOURCE'
-      );
-    });
-
-    it('should emit deprecation when `eventBridge.useCloudFormation` is not explicitly set', async () => {
-      await expect(
-        runServerless({
-          fixture: 'function',
-          configExt: {
-            ...serverlessConfigurationExtension,
-          },
-          command: 'package',
-        })
-      ).to.be.eventually.rejected.and.have.property(
-        'code',
-        'REJECTED_DEPRECATION_AWS_EVENT_BRIDGE_CUSTOM_RESOURCE'
       );
     });
   });

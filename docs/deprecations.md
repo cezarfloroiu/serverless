@@ -36,6 +36,14 @@ Note:
 - In service configuration setting is ineffective for deprecations reported before service configuration is read.
 - `SLS_DEPRECATION_DISABLE` env var and `disabledDeprecations` configuration setting remain respected, and no errors will be thrown for mentioned deprecation coodes.
 
+<a name="AwS_EVENT_BRIDGE_CUSTOM_RESOURCE_LEGACY_OPT_IN"><div>&nbsp;</div></a>
+
+## AWS EventBridge lambda event triggers based on Custom Resources
+
+Deprecation code: `AwS_EVENT_BRIDGE_CUSTOM_RESOURCE_LEGACY_OPT_IN`
+
+Support for provisioning AWS EventBridge resources without native CloudFormation resources is deprecated and will no longer be maintained. If you want to upgrade to native CloudFormation, remove "eventBridge.useCloudFormation" setting from your configuration.
+
 <a name="AWS_HTTP_API_USE_PROVIDER_TAGS_PROPERTY"><div>&nbsp;</div></a>
 
 ## Ineffective property `provider.httpApi.useProviderTags`
